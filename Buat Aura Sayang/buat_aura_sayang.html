@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Buat Aura Tersayang💖</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body {
+  height: 100vh;
+  background: #ff2e7a;
+  overflow: hidden;
+  color: white;
+}
+
+/* CONTAINER (iphone style) */
+.container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* CARD */
+.card {
+  width: 90%;
+  max-width: 350px;
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(20px);
+  border-radius: 30px;
+  padding: 20px;
+  text-align: center;
+  transition: 0.5s;
+}
+
+/* FOLDER */
+.folder img {
+  width: 150px;
+}
+
+.folder p {
+  margin-top: 10px;
+}
+
+/* BUTTON */
+button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 20px;
+  margin: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.yes {
+  background: white;
+  color: #ff2e7a;
+}
+
+.no {
+  background: black;
+  color: white;
+}
+
+/* HIDDEN */
+.hidden {
+  display: none;
+}
+
+/* STORY SLIDE */
+.slide {
+  display: none;
+  animation: fade 0.6s ease;
+}
+
+.active {
+  display: block;
+}
+
+@keyframes fade {
+  from {opacity: 0; transform: translateY(20px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+/* VIDEO */
+video {
+  width: 100%;
+  border-radius: 20px;
+}
+
+/* GALLERY */
+.gallery {
+  display: flex;
+  overflow-x: auto;
+  margin-top: 10px;
+}
+
+.gallery img {
+  width: 150px;
+  margin-right: 50px;
+  border-radius: 15px;
+}
+
+/* LOVE FALL */
+.heart {
+  position: absolute;
+  top: -50px;
+  font-size: 40px;
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh);
+  }
+}
+
+.text-box {
+  margin-top: 20px;
+  height: 200px;
+  overflow-y: auto;
+  background: rgba(255,255,255,0.15);
+  padding: 15px;
+  border-radius: 15px;
+  animation: fade 1s ease;
+}
+
+/* SNOWMAN JALAN */
+.snowman {
+  position: absolute;
+  bottom: 0;
+  font-size: 40px;
+  animation: jalan 10s linear infinite;
+}
+
+.snowman2 {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  font-size: 40px;
+  animation: jalan2 12s linear infinite;
+}
+
+@keyframes jalan {
+  from { left: -50px; }
+  to { left: 100%; }
+}
+
+@keyframes jalan2 {
+  from { right: -50px; }
+  to { right: 100%; }
+}
+</style>
+
+</head>
+<body>
+
+<!-- AUDIO -->
+<audio id="musik" autoplay loop>
+  <source src="lagu.mp3" type="audio/mp3">
+</audio>
+
+<div class="container">
+  <div class="card">
+
+    <!-- SLIDE 1 (FOLDER) -->
+    <div class="slide active" id="slide1">
+      <div class="folder" onclick="nextSlide(2)">
+        <img src="https://cdn-icons-png.flaticon.com/512/716/716784.png">
+        <p>Klik Folder</p>
+      </div>
+    </div>
+
+    <!-- SLIDE 2 (PERTANYAAN) -->
+    <div class="slide" id="slide2">
+      <h2>Kamu sayang aku gaa??🥺</h2>
+      <button class="yes" onclick="iya()">Iyaaaaa❤️</button>
+      <button class="no" onclick="tidak()">Tidak!👿</button>
+    </div>
+
+    <!-- SLIDE 3 (HASIL IYA) -->
+    <div class="slide" id="slide3">
+      <h2>Aku juga sayang kamu bb💖</h2>
+      <video src="video.mp4" autoplay loop></video>
+
+      <div class="gallery">
+        <img src="foto1.jpg">
+        <img src="foto2.jpg">
+        <img src="foto3.jpg">
+        <img src="foto4.jpg">
+        <img src="foto5.jpg">
+        <img src="foto6.jpg">
+
+        <button class="yes" onclick="nextSlide(5)">Bacaa Yaaaa Sayangkuu💌</button>
+      </div>
+    </div>
+
+    <!-- SLIDE 4 (SEDIH) -->
+    <div class="slide" id="slide4">
+      <h1>😢💔💔💔</h1>
+    </div>
+
+    <div class="slide" id="slide5">
+  <h2>Buat Si Imupp💖</h2>
+
+  <div class="text-box" margin-top: 20px;
+  height: 200px;
+  overflow-y: auto;
+  background: rgba(255,255,255,0.15);
+  padding: 15px;
+  border-radius: 15px;>
+    <p id="typing"></p>
+  </div>
+</div>
+
+  </div>
+</div>
+
+<script>
+/* SLIDE CONTROL */
+function nextSlide(n) {
+  document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+  document.getElementById('slide'+n).classList.add('active');
+}
+
+/* IYA */
+function iya() {
+  nextSlide(3);
+}
+
+/* TIDAK */
+function tidak() {
+  nextSlide(4);
+}
+
+/* PAKSA MUSIK */
+document.addEventListener("click", () => {
+  document.getElementById("musik").play();
+});
+
+/* LOVE JATUH BESAR DARI ATAS */
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.classList.add("heart");
+  heart.innerHTML = "💖";
+
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = (3 + Math.random() * 2) + "s";
+  heart.style.fontSize = (30 + Math.random() * 40) + "px";
+
+  document.body.appendChild(heart);
+
+  setTimeout(() => {
+    heart.remove();
+  }, 5000);
+}
+
+const text = `Haii Sayanggg...  
+      Makasih ya udah hadir di hidup aku.  
+      Dari awal kita kenal sampai sekarang,  
+      banyak banget hal yang kita lewatin bareng.  
+
+      Mungkin aku bukan yang sempurna,  
+      tapi aku selalu berusaha jadi yang terbaik buat kamu.  
+
+      Aku harap kita bisa terus bareng,  
+      ngelewatin hari-hari ke depan,  
+      dan bikin lebih banyak kenangan lagi 💕`;
+
+let i = 0;
+function ketik() {
+  if (i < text.length) {
+    document.getElementById("typing").innerHTML += text.charAt(i);
+    i++;
+    setTimeout(ketik, 60);
+  }
+}
+
+document.getElementById("slide5").addEventListener("click", ketik);
+
+setInterval(createHeart, 200);
+</script>
+
+</body>
+</html>
